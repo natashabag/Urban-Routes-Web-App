@@ -12,24 +12,20 @@ module.exports = {
   phoneNumberButton: '//div[starts-with(text(), "Phone number")]',
   nextButton: "button=Next",
   confirmButton: "button=Confirm",
-  supportiveButton: '//div[contains(text(), "Supportive")]',
+  supportiveButton: "//div/div[3]/div[3]/div[2]/div[1]/div[5]",
   paymentButton: ".pp-text",
   addCardButton: "div=Add card",
   linkButton: "button=Link",
-  closeButton: "button.close",
-  blanketSlider:
-    "//div/div[3]/div[3]/div[2]/div[2]/div[4]/div[2]/div[1]/div/div[2]/div/span",
-  iceCreamButton:
-    "//div/div[3]/div[3]/div[2]/div[2]/div[4]/div[2]/div[3]/div/div[2]/div[1]/div/div[2]/div/div[3]",
-  orderButton: "button=Enter the number and order",
+  closeButton: "//div/div[2]/div[2]/div[1]/button",
+  blanketSlider: ".switch",
+  blanketSliderStatus: ".switch-input",
+  iceCreamPlusButton: "div=+",
+  orderButton: ".smart-button",
   // Modals
   phoneNumberModal: ".modal",
   carSearchModal: ".order-body",
-  //Checkboxes
-  cardOneCheckBox: ".checkbox #card-1",
-  iceCreamNum:
-    "//div/div[3]/div[3]/div[2]/div[2]/div[4]/div[2]/div[3]/div/div[2]/div[1]/div/div[2]/div/div[2]",
-  driverWindow: '//div[contains(text(), "The driver will arrive")]',
+  //Other
+  driverWindow: "//div/div[5]/div[2]/div[1]/div/div[2]",
 
   // Functions
   fillAddresses: async function (from, to) {
@@ -79,12 +75,11 @@ module.exports = {
     await paymentButton.scrollIntoView();
     await paymentButton.waitForClickable();
     await paymentButton.click();
-    await browser.pause(2000);
     await expect(paymentButton).toBeExisting();
     const addCardButton = await $(this.addCardButton);
     await addCardButton.waitForClickable();
     await addCardButton.click();
-    await browser.pause(2000);
+    // await browser.pause(2000);
     //add cardnum
     const cardNumField = await $(this.cardNumField);
     await cardNumField.waitForDisplayed();
@@ -93,9 +88,9 @@ module.exports = {
     const cvcNumField = await $(this.cvcNumField);
     await cvcNumField.waitForDisplayed();
     await cvcNumField.setValue(cvcNumber);
-    await browser.pause(5000);
+    await browser.pause(3000);
     await browser.keys(["\uE004"]);
-    const linkButton = await $(page.linkButton);
+    const linkButton = await $(this.linkButton);
     await linkButton.waitForClickable();
     await linkButton.click();
   },
@@ -114,11 +109,11 @@ module.exports = {
     await blanketSlider.click();
   },
   orderIceCreams: async function () {
-    const iceCreamButton = await $(this.iceCreamButton);
-    await iceCreamButton.scrollIntoView();
-    await iceCreamButton.waitForClickable();
-    await iceCreamButton.click();
-    await iceCreamButton.click();
+    const iceCreamPlusButton = await $(this.iceCreamPlusButton);
+    await iceCreamPlusButton.scrollIntoView();
+    await iceCreamPlusButton.waitForClickable();
+    await iceCreamPlusButton.click();
+    await iceCreamPlusButton.click();
     await browser.pause(5000);
   },
 };

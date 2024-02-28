@@ -26,17 +26,15 @@ describe("Ordering Taxi-Supportive plan", () => {
   it("should set the address", async () => {
     await browser.url(`/`);
     await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
-    await expect(page.fromField).toHaveValue("East 2nd Street, 601");
-    await expect(page.toField).toHaveValue("1300 1st St");
+    await expect($(page.fromField)).toHaveValue("East 2nd Street, 601");
+    await expect($(page.toField)).toHaveValue("1300 1st St");
   });
-
   it("should select supportive plan", async () => {
     await browser.url(`/`);
     await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
     await page.clickSupportive();
-    await expect(page.supportiveButton).toHaveElementClass("active");
+    await expect($(page.supportiveButton)).toHaveElementClass("active");
   });
-
   it("should fill phone number", async () => {
     await browser.url(`/`);
     await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
@@ -44,23 +42,20 @@ describe("Ordering Taxi-Supportive plan", () => {
     await page.submitPhoneNumber(phoneNumber);
     await expect(await helper.getElementByText(phoneNumber)).toBeExisting();
   });
-
   it("should add a credit card", async () => {
     await browser.url(`/`);
     await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
     const cardNumber = helper.getCardNumber();
     const cvcNumber = helper.getCVC();
     await page.addCard(cardNumber, cvcNumber);
-    //const cardOneCheckBox = await $(page.cardOneCheckBox);
     await expect(await $(page.paymentButton)).toBeExisting();
   });
-
   it("should a message to the driver", async () => {
     await browser.url(`/`);
     await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
     const message = helper.writeMessage();
     page.sendMessage(message);
-    await expect(page.messageField).toHaveValue(
+    await expect(await $(page.messageField)).toHaveValue(
       "Hi! Thanks for picking me up!"
     );
   });
@@ -70,39 +65,40 @@ describe("Ordering Taxi-Supportive plan", () => {
     await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
     await page.clickSupportive();
     await page.orderBlanket();
-    //what is the result?
+    await expect($(page.blanketSliderStatus)).toBeChecked();
   });
   it("should order two ice creams", async () => {
     await browser.url(`/`);
     await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
     await page.clickSupportive();
     await page.orderIceCreams();
-    await expect(page.iceCreamNum).toHaveValue(2);
+    const iceCreamQty = 2;
+    await expect($(`div=${iceCreamQty}`)).toBeExisting();
   });
   it("should display car search modal", async () => {
     await browser.url(`/`);
     await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
     await browser.pause(3000);
-    await page.clickSupportive();
-    await browser.pause(3000);
     const phoneNumber = helper.getPhoneNumber("+1");
     await page.submitPhoneNumber(phoneNumber);
-    await browser.pause(3000);
-    const cardNumber = helper.getCardNumber();
-    const cvcNumber = helper.getCVC();
-    await page.addCard(cardNumber, cvcNumber);
-    const closeButton = await $(page.closeButton);
-    await closeButton.waitForClickable();
-    await closeButton.click();
-    await browser.pause(3000);
-    await page.orderBlanket();
-    await browser.pause(3000);
-    await page.orderIceCreams();
-    await browser.pause(3000);
     const orderButton = await $(page.orderButton);
     await orderButton.waitForClickable();
     await orderButton.click();
+    await browser.pause(2000);
     const carSearchModal = await $(page.carSearchModal);
-    await expect(carSearchModal).toBeExisting();
+    await expect(await $(carSearchModal)).toBeDisplayed();
+  });
+  it("should  wait for driver info to appear in the modal", async () => {
+    await browser.url(`/`);
+    await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
+    await browser.pause(3000);
+    const phoneNumber = helper.getPhoneNumber("+1");
+    await page.submitPhoneNumber(phoneNumber);
+    const orderButton = await $(page.orderButton);
+    await orderButton.waitForClickable();
+    await orderButton.click();
+    const driverWindow = await $(page.driverWindow);
+    await browser.pause(40000);
+    await expect(await $(driverWindow)).toBeExisting();
   });
 });
