@@ -89,8 +89,6 @@ describe("Ordering Taxi-Supportive plan", () => {
   it("should  wait for driver info to appear in the modal", async () => {
     await browser.url(`/`);
     await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
-    const phoneNumber = helper.getPhoneNumber("+1");
-    await page.submitPhoneNumber(phoneNumber);
     const orderButton = await $(page.orderButton);
     await orderButton.waitForClickable();
     await orderButton.click();
