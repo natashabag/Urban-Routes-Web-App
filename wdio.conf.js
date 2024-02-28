@@ -9,31 +9,22 @@ exports.config = {
     maxInstances: 10,
     headless: true,
     capabilities: [
-        {
-        maxInstances: 5,
-        browserName: 'chrome',
-        acceptInsecureCerts: true,
-        'goog:chromeOptions': {
-            args: ['headless', 'disable-gpu']
-        }
-    },
     {
         maxInstances: 5,
         browserName: 'firefox',
         acceptInsecureCerts: true,
         'moz:firefoxOptions': {
-            args: ['-headless']
+            //args: ['-headless']
         }
     }
 ],
     logLevel: 'error',
     bail: 0,
-    baseUrl: 'https://e629ed6b-4969-442b-987e-087e81eb10ca.serverhub.practicum-services.com',
+    baseUrl: 'https://e3dda7d0-2d4c-4005-bea4-21258d7308b3.serverhub.practicum-services.com',
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
-    services: [
-        'chromedriver', 
+    services: [ 
         'geckodriver', 
         'intercept', 
     ],
