@@ -24,7 +24,7 @@ exports.config = {
   waitforTimeout: 10000,
   connectionRetryTimeout: 120000,
   connectionRetryCount: 3,
-  services: ["geckodriver", "intercept", "firefox"],
+  services: ["geckodriver", "intercept"],
   framework: "mocha",
   reporters: ["spec"],
   mochaOpts: {
