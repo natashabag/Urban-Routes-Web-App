@@ -78,20 +78,17 @@ describe("Ordering Taxi-Supportive plan", () => {
   it("should display car search modal", async () => {
     await browser.url(`/`);
     await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
-    await browser.pause(3000);
     const phoneNumber = helper.getPhoneNumber("+1");
     await page.submitPhoneNumber(phoneNumber);
     const orderButton = await $(page.orderButton);
     await orderButton.waitForClickable();
     await orderButton.click();
-    await browser.pause(2000);
     const carSearchModal = await $(page.carSearchModal);
     await expect(await $(carSearchModal)).toBeDisplayed();
   });
   it("should  wait for driver info to appear in the modal", async () => {
     await browser.url(`/`);
     await page.fillAddresses("East 2nd Street, 601", "1300 1st St");
-    await browser.pause(3000);
     const phoneNumber = helper.getPhoneNumber("+1");
     await page.submitPhoneNumber(phoneNumber);
     const orderButton = await $(page.orderButton);

@@ -16,7 +16,6 @@ module.exports = {
   paymentButton: ".pp-text",
   addCardButton: "div=Add card",
   linkButton: "button=Link",
-  closeButton: "//div/div[2]/div[2]/div[1]/button",
   blanketSlider: ".switch",
   blanketSliderStatus: ".switch-input",
   iceCreamPlusButton: "div=+",
@@ -25,7 +24,7 @@ module.exports = {
   phoneNumberModal: ".modal",
   carSearchModal: ".order-body",
   //Other
-  driverWindow: "//div/div[5]/div[2]/div[1]/div/div[2]",
+  driverWindow: ".order-subbody",
 
   // Functions
   fillAddresses: async function (from, to) {
@@ -68,7 +67,6 @@ module.exports = {
     const supportiveButton = await $(this.supportiveButton);
     await supportiveButton.waitForDisplayed();
     await supportiveButton.click();
-    await browser.pause(5000);
   },
   addCard: async function (cardNumber, cvcNumber) {
     const paymentButton = await $(this.paymentButton);
@@ -79,7 +77,6 @@ module.exports = {
     const addCardButton = await $(this.addCardButton);
     await addCardButton.waitForClickable();
     await addCardButton.click();
-    // await browser.pause(2000);
     //add cardnum
     const cardNumField = await $(this.cardNumField);
     await cardNumField.waitForDisplayed();
@@ -88,7 +85,6 @@ module.exports = {
     const cvcNumField = await $(this.cvcNumField);
     await cvcNumField.waitForDisplayed();
     await cvcNumField.setValue(cvcNumber);
-    await browser.pause(3000);
     await browser.keys(["\uE004"]);
     const linkButton = await $(this.linkButton);
     await linkButton.waitForClickable();
@@ -102,10 +98,8 @@ module.exports = {
   },
   orderBlanket: async function () {
     const blanketSlider = await $(this.blanketSlider);
-    await browser.pause(2000);
     await blanketSlider.scrollIntoView();
     await blanketSlider.waitForClickable();
-    await browser.pause(2000);
     await blanketSlider.click();
   },
   orderIceCreams: async function () {
@@ -114,6 +108,5 @@ module.exports = {
     await iceCreamPlusButton.waitForClickable();
     await iceCreamPlusButton.click();
     await iceCreamPlusButton.click();
-    await browser.pause(5000);
   },
 };
