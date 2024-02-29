@@ -13,7 +13,7 @@ exports.config = {
       acceptInsecureCerts: true,
       "moz:firefoxOptions": {
         //args: ['-headless']
-        binary: "/Applications/Firefox.app/Contents/MacOS/firefox",
+        //binary: "/Applications/Firefox.app/Contents/MacOS/firefox",
       },
     },
   ],
