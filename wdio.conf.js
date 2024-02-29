@@ -1,9 +1,7 @@
 exports.config = {
   runner: "local",
   specs: ["./test/specs/**/*.js"],
-  exclude: [
-    // 'path/to/excluded/files'
-  ],
+  exclude: [],
   maxInstances: 10,
   headless: true,
   capabilities: [
@@ -12,7 +10,6 @@ exports.config = {
       browserName: "firefox",
       acceptInsecureCerts: true,
       "moz:firefoxOptions": {
-        //args: ['-headless']
         binary: "/Applications/Firefox.app/Contents/MacOS/firefox",
       },
     },
@@ -20,7 +17,7 @@ exports.config = {
   logLevel: "error",
   bail: 0,
   baseUrl:
-    "https://cnt-4ee9406b-85e4-4cff-91b1-01199441b3d2.containerhub.tripleten-services.com",
+    "https://cnt-f90f0efc-9f2e-46b0-ae97-8d2ed2ce4854.containerhub.tripleten-services.com",
   waitforTimeout: 10000,
   connectionRetryTimeout: 120000,
   connectionRetryCount: 3,

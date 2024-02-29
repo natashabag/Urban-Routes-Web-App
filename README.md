@@ -21,4 +21,8 @@ WebdriverIO framework was used to automate and execute tests. In this project, t
 
 # Documentation source used
 
-project description on TripleTen platform
+Project description on TripleTen platform
+
+# How to run the project
+
+To run the tests in the test suite, please, use "npm run wdio" command.
