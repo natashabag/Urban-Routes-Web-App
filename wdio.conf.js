@@ -13,13 +13,14 @@ exports.config = {
       acceptInsecureCerts: true,
       "moz:firefoxOptions": {
         //args: ['-headless']
+        binary: "/Applications/Firefox.app/Contents/MacOS/firefox",
       },
     },
   ],
   logLevel: "error",
   bail: 0,
   baseUrl:
-    "https://cnt-1c9341bd-09c0-48ea-a17a-a97f450888bd.containerhub.tripleten-services.com",
+    "https://cnt-39441c97-53e5-4087-ade9-774b80ee2c5b.containerhub.tripleten-services.com",
   waitforTimeout: 10000,
   connectionRetryTimeout: 120000,
   connectionRetryCount: 3,
