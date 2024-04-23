@@ -4,7 +4,7 @@ Urban Routes functionality testing
 
 # Description
 
-This project is design to test functionalities of Urban Routes ensure the quality of the product. The test suite consists of 9 tests that cover cover the following:
+This project is design to test functionalities of Urban Routes ensure the quality of the product. The test suite consists of 9 tests that cover the following:
 1.Setting the address
 2.Selecting Supportive plan
 3.Filling in the phone number
